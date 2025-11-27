@@ -1,0 +1,350 @@
+---
+---
+
+/*
+ * This file controls what is imported from /_sass
+ *
+ * Note that the files are processed in the order they are imported, so they are partly
+   sorted by the dependencies. Also, the first two lines of the file are required by Jekyll.
+ */
+
+@import
+    "vendor/breakpoint/breakpoint",
+
+    "themes",
+    "theme/{{ site.site_theme | default: 'default' | append: '_light' }}",
+    "theme/{{ site.site_theme | default: 'default' | append: '_dark' }}",
+
+    "include/mixins",
+    "vendor/susy/susy",
+
+    "layout/reset",
+    "layout/base",
+
+    "include/utilities",
+    "layout/tables",
+    "layout/buttons",
+    "layout/notices",
+    "layout/masthead",
+    "layout/navigation",
+    "layout/footer",
+    "syntax",
+
+    "layout/forms",
+
+    "layout/page",
+    "layout/archive",
+    "layout/sidebar",
+    "layout/json_cv",
+
+    "vendor/font-awesome/fontawesome",
+    "vendor/font-awesome/solid",
+    "vendor/font-awesome/brands"
+; 
+/* 👆一定要保留上面这个分号，代码贴在下面 👇 */
+
+
+/* =======================================================
+   FINAL V2: Flex Card Style with Solid Badges
+   (粘贴到 assets/css/main.scss 最底部)
+   ======================================================= */
+
+/* 1. 卡片整体布局 (Flexbox: 左图右文) */
+.archive__item.card-style-flex {
+  display: flex;             /* 开启 Flex 布局 */
+  flex-direction: row;       /* 横向排列 */
+  background-color: #ffffff;
+  border: 1px solid #e1e4e8; /* 浅灰边框 */
+  border-radius: 8px;        /* 卡片圆角 */
+  padding: 20px;
+  margin-bottom: 24px;
+  gap: 24px;                 /* 图片和文字的间距 */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+  transition: all 0.2s ease;
+}
+
+/* 鼠标悬停卡片上浮 */
+.archive__item.card-style-flex:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+  border-color: #d1d5da;
+}
+
+/* 2. 左侧图片列样式 */
+.archive__item-teaser-col {
+  flex: 0 0 180px; /* 固定宽度 180px */
+  max-width: 180px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.archive__item-teaser-col img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1px solid #f0f0f0;
+}
+
+/* 3. 右侧内容列样式 */
+.archive__item-content-col {
+  flex: 1; /* 占据剩余空间 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 4. 标题 */
+.archive__item-title {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.archive__item-title a {
+  color: #24292e;
+  text-decoration: none;
+}
+.archive__item-title a:hover {
+  color: #0366d6; /* 悬停变蓝 */
+}
+
+/* 5. 作者 */
+.archive__item-authors {
+  font-size: 0.9rem;
+  color: #586069;
+  margin-bottom: 10px;
+}
+
+/* 6. Badge 容器 */
+.archive__item-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+/* --- 这里就是你要的 实心 Badge 样式 --- */
+.venue-badge-solid {
+  background-color: #0366d6; /* 深蓝色背景 */
+  color: #ffffff !important; /* 白色文字 */
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 4px;        /* 稍微圆角 */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  line-height: 1.2;
+}
+
+/* --- 这里就是你要的 关键词胶囊 样式 --- */
+.keyword-badge-pill {
+  background-color: #f1f8ff; /* 浅蓝色背景 */
+  color: #0366d6;            /* 蓝色文字 */
+  border: 1px solid #c8e1ff; /* 蓝色描边 */
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  border-radius: 12px;       /* 胶囊圆角 */
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  display: inline-block;
+  line-height: 1.2;
+}
+
+/* 7. 摘要 */
+.archive__item-excerpt {
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+/* 8. 底部按钮行 */
+.archive__item-links-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto; /* 推到底部 */
+  padding-top: 12px;
+  border-top: 1px dashed #eaecef;
+}
+
+/* 9. 圆角矩形按钮样式 */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 6px; /* 按钮圆角 */
+  text-decoration: none !important;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+/* ArXiv 样式 */
+.link-arxiv {
+  color: #b31b1b;
+  background-color: #fff;
+  border: 1px solid #e1e4e8;
+}
+.link-arxiv:hover {
+  background-color: #b31b1b;
+  color: white;
+  border-color: #b31b1b;
+}
+
+/* GitHub 样式 */
+.link-github {
+  color: #24292e;
+  background-color: #fff;
+  border: 1px solid #e1e4e8;
+}
+.link-github:hover {
+  background-color: #24292e;
+  color: white;
+  border-color: #24292e;
+}
+
+/* Slides 样式 */
+.link-slides {
+  color: #e67e22;
+  background-color: #fff;
+  border: 1px solid #e1e4e8;
+}
+.link-slides:hover {
+  background-color: #e67e22;
+  color: white;
+  border-color: #e67e22;
+}
+
+/* 年份 */
+.date-label-simple {
+  margin-left: auto;
+  font-weight: bold;
+  color: #e1e4e8;
+  font-size: 1.2rem;
+}
+
+/* 手机端适配：垂直排列 */
+@media (max-width: 768px) {
+  .archive__item.card-style-flex {
+    flex-direction: column;
+  }
+  .archive__item-teaser-col {
+    flex: 0 0 auto;
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+  /* --- 1. 整体卡片化和阴影 --- */
+  .author__card {
+    background-color: #ffffff;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+    text-align: center; /* 头像居中 */
+  }
+
+  .author__card:hover {
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+  }
+
+  /* --- 2. 头像样式 --- */
+  .author__avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* 圆形头像 */
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #0366d6; /* 给头像加一个主题色的环 */
+  }
+
+  /* --- 3. 核心内容 --- */
+  .author__content {
+    margin-bottom: 15px;
+  }
+
+  .author__name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  .author__bio {
+    font-size: 0.95rem;
+    color: #586069;
+    line-height: 1.5;
+  }
+
+  /* --- 4. 按钮和链接区 --- */
+  .author__urls-wrapper {
+    margin-top: 20px;
+    border-top: 1px dashed #eaecef;
+    padding-top: 15px;
+  }
+
+  /* 统一按钮风格 (Publication 页面中的 .btn-pill 风格) */
+  .btn-profile {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px; 
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none !important;
+    transition: all 0.2s;
+    border: 1px solid #0366d6; /* 主题色边框 */
+    background-color: #fff;
+    color: #0366d6;
+    margin-bottom: 10px;
+  }
+  .btn-profile:hover {
+    background-color: #0366d6;
+    color: white !important;
+  }
+  
+  /* 链接列表样式 */
+  .author__urls.social-icons {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+  
+  .author__urls.social-icons li {
+    text-align: left; /* 文本左对齐 */
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding: 5px 0;
+  }
+
+  .author__urls.social-icons li a {
+    color: #24292e; /* 链接颜色 */
+    text-decoration: none;
+  }
+  
+  .author__urls.social-icons li a:hover {
+    color: #0366d6; /* 悬停主题色 */
+  }
+
+  /* 链接图标间距 */
+  .author__urls.social-icons li .icon-pad-right {
+    margin-right: 8px;
+    color: #586069; /* 图标颜色 */
+  }
+
+/* =======================================================
+   FINAL V3: Author Card Style
+   (粘贴到 assets/css/main.scss 最底部)
+   ======================================================= */
